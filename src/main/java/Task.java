@@ -15,12 +15,20 @@ public class Task {
         this.done = false;
     }
 
+    public String getType() {
+        return "";
+    }
+
+    public String getDeadline() {
+        return "";
+    }
+
     @Override
     public String toString() {
         if (done) {
-            return "[X] " + this.name;
+            return "[" + getType() + "][X] " + this.name + " " + getDeadline();
         } else {
-            return "[ ] " + this.name;
+            return "[" + getType() + "][ ] " + this.name + " " + getDeadline();
         }
     }
 }

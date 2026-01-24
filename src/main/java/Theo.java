@@ -10,7 +10,7 @@ public class Theo {
 
         while (true) {
             String input = sc.nextLine();
-            String[] inputArray = input.split(" ");
+            String[] inputArray = input.split(" ", 2);
             String req = inputArray[0];
 
             if (req.equals("bye")) {
@@ -33,6 +33,37 @@ public class Theo {
                 task.markUndone();
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(task);
+            } else if (req.equals("todo")) {
+                String name = inputArray[1];
+                Task newTask = new ToDo(name);
+                list[index] = newTask;
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newTask);
+                System.out.println("Now you have " + index + " task(s) in the list.");
+                index++;
+            } else if (req.equals("deadline")) {
+                String desc = inputArray[1];
+                String[] descArray = desc.split(" /", 2);
+                String name = descArray[0];
+                String deadline = descArray[1];
+                Task newTask = new Deadline(name, deadline);
+                list[index] = newTask;
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newTask);
+                System.out.println("Now you have " + index + " task(s) in the list.");
+                index++;
+            } else if (req.equals("event")) {
+                String desc = inputArray[1];
+                String[] descArray = desc.split(" /", 3);
+                String name = descArray[0];
+                String start = descArray[1];
+                String end = descArray[2];
+                Task newTask = new Event(name, start, end);
+                list[index] = newTask;
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newTask);
+                System.out.println("Now you have " + index + " task(s) in the list.");
+                index++;
             } else {
                 Task newTask = new Task(input);
                 list[index] = newTask;
