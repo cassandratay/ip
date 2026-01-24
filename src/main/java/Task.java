@@ -25,6 +25,11 @@ public class Task {
 
     @Override
     public String toString() {
+        if (name.isEmpty()) {
+            return "Huh? ";
+        }
+
+
         if (done) {
             return "[" + getType() + "][X] " + this.name + getDeadline();
         } else {
