@@ -14,6 +14,6 @@ public class Deadline extends Task {
     @Override
     public String getDeadline() {
         String[] deadlineArray = deadline.split(" ", 2);
-        return "(" + deadlineArray[0] + ": " + deadlineArray[1] + ")";
+        return " (" + deadlineArray[0] + ": " + deadlineArray[1] + ")";
     }
 }

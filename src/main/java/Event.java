@@ -17,6 +17,6 @@ public class Event extends Task {
     public String getDeadline() {
         String[] startArray = start.split(" ", 2);
         String[] endArray = end.split(" ", 2);
-        return "(" + startArray[0] + ": " + startArray[1] + " " + endArray[0] + ": " + endArray[1] + ")";
+        return " (" + startArray[0] + ": " + startArray[1] + " " + endArray[0] + ": " + endArray[1] + ")";
     }
 }

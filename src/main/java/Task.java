@@ -26,9 +26,9 @@ public class Task {
     @Override
     public String toString() {
         if (done) {
-            return "[" + getType() + "][X] " + this.name + " " + getDeadline();
+            return "[" + getType() + "][X] " + this.name + getDeadline();
         } else {
-            return "[" + getType() + "][ ] " + this.name + " " + getDeadline();
+            return "[" + getType() + "][ ] " + this.name + getDeadline();
         }
     }
 }
