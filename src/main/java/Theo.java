@@ -26,12 +26,14 @@ public class Theo {
                     int num = Integer.parseInt(inputArray[1]) - 1;
                     Task task = list.get(num);
                     task.markDone();
+                    Storage.save(list);
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(task);
                 } else if (req.equals("unmark")) {
                     int num = Integer.parseInt(inputArray[1]) - 1;
                     Task task = list.get(num);
                     task.markUndone();
+                    Storage.save(list);
                     System.out.println("OK, I've marked this task as not done yet:");
                     System.out.println(task);
                 } else if (req.equals("todo")) {
@@ -41,6 +43,7 @@ public class Theo {
                     String name = inputArray[1];
                     Task newTask = new ToDo(name);
                     list.add(newTask);
+                    Storage.save(list);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(newTask);
                     System.out.println("Now you have " + list.size() + " task(s) in the list.");
@@ -57,6 +60,7 @@ public class Theo {
                     String deadline = descArray[1];
                     Task newTask = new Deadline(name, deadline);
                     list.add(newTask);
+                    Storage.save(list);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(newTask);
                     System.out.println("Now you have " + list.size() + " task(s) in the list.");
@@ -74,6 +78,7 @@ public class Theo {
                     String end = descArray[2];
                     Task newTask = new Event(name, start, end);
                     list.add(newTask);
+                    Storage.save(list);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(newTask);
                     System.out.println("Now you have " + list.size() + " task(s) in the list.");
@@ -83,6 +88,7 @@ public class Theo {
                     }
                     int num = Integer.parseInt(inputArray[1]) - 1;
                     Task task = list.remove(num);
+                    Storage.save(list);
                     System.out.println("Noted. I've removed this task:");
                     System.out.println(task);
                     System.out.println("Now you have " + list.size() + " task(s) in the list.");

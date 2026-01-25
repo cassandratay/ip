@@ -29,11 +29,14 @@ public class Task {
             return "Huh? ";
         }
 
-
         if (done) {
             return "[" + getType() + "][X] " + this.name + getDeadline();
         } else {
             return "[" + getType() + "][ ] " + this.name + getDeadline();
         }
+    }
+
+    public String formatString() {
+        return getType() + " | " + (done ? "1" : "0") + " | " + this.name + getDeadline();
     }
 }
