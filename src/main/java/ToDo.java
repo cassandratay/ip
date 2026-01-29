@@ -7,4 +7,9 @@ public class ToDo extends Task {
     public String getType() {
         return "T";
     }
+
+    @Override
+    public String getDeadline() {
+        return "";
+    }
 }

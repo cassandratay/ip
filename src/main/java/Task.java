@@ -1,6 +1,6 @@
-public class Task {
-    String name;
-    boolean done;
+public abstract class Task {
+    private final String name;
+    private boolean done;
 
     public Task(String name) {
         this.name = name;
@@ -15,13 +15,9 @@ public class Task {
         this.done = false;
     }
 
-    public String getType() {
-        return "";
-    }
+    public abstract String getType();
 
-    public String getDeadline() {
-        return "";
-    }
+    public abstract String getDeadline();
 
     @Override
     public String toString() {
@@ -29,11 +25,7 @@ public class Task {
             return "Huh? ";
         }
 
-        if (done) {
-            return "[" + getType() + "][X] " + this.name + getDeadline();
-        } else {
-            return "[" + getType() + "][ ] " + this.name + getDeadline();
-        }
+        return "[" + getType() + "][" + (done ? "X] " : " ] ") + this.name + getDeadline();
     }
 
     public String formatString() {

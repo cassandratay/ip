@@ -1,1 +1,3 @@
-T | 0 | heyyyyyo
+T | 0 | read book
+D | 0 | return book (by: Dec 02 2019, 6:00 pm)
+E | 0 | project meeting (from: Dec 02 2019, 6:00 pm to: Dec 12 2019, 6:00 am)
