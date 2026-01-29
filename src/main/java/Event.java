@@ -1,11 +1,19 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    String start;
-    String end;
+    private final LocalDateTime start;
+    private final LocalDateTime end;
+
+    private static final DateTimeFormatter INPUT_FORMAT =
+            DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+    private static final DateTimeFormatter OUTPUT_FORMAT =
+            DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
 
     public Event(String name, String start, String end) {
         super(name);
-        this.start = start;
-        this.end = end;
+        this.start = LocalDateTime.parse(start, INPUT_FORMAT);
+        this.end = LocalDateTime.parse(end, INPUT_FORMAT);
     }
 
     @Override
@@ -15,8 +23,6 @@ public class Event extends Task {
 
     @Override
     public String getDeadline() {
-        String[] startArray = start.split(" ", 2);
-        String[] endArray = end.split(" ", 2);
-        return " (" + startArray[0] + ": " + startArray[1] + " " + endArray[0] + ": " + endArray[1] + ")";
+        return " (from: " + start.format(OUTPUT_FORMAT) + " to: " + end.format(OUTPUT_FORMAT) + ")";
     }
 }

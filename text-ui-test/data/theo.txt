@@ -1,2 +1,2 @@
 T | 0 | read book
-E | 0 | project meeting (from: Mon 2pm to: 4pm)
+E | 0 | project meeting (from: Dec 02 2019, 6:00 pm to: Dec 12 2019, 6:00 am)
