@@ -1,3 +1,12 @@
+package theo.commands;
+
+import theo.exceptions.TheoException;
+import theo.storage.Storage;
+import theo.task.Deadline;
+import theo.task.Task;
+import theo.task.TaskList;
+import theo.ui.Ui;
+
 public class DeadlineCommand extends Command {
     private String name;
     private String deadline;

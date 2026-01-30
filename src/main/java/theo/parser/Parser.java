@@ -1,3 +1,12 @@
+package theo.parser;
+
+import theo.commands.*;
+import theo.exceptions.TheoException;
+import theo.task.Deadline;
+import theo.task.Event;
+import theo.task.Task;
+import theo.task.ToDo;
+
 public class Parser {
     public static Command parseInput(String input) {
         String[] inputParts = input.split(" ", 2);
@@ -87,7 +96,7 @@ public class Parser {
 
             case "D":
                 if (taskParts.length < 4) {
-                    throw new TheoException("Deadline missing time: " + fileLine);
+                    throw new TheoException("theo.task.Deadline missing time: " + fileLine);
                 }
                 String deadline = taskParts[3];
                 task = new Deadline(name, deadline);
@@ -95,7 +104,7 @@ public class Parser {
 
             case "E":
                 if (taskParts.length < 5) {
-                    throw new TheoException("Event missing start or end time: " + fileLine);
+                    throw new TheoException("theo.task.Event missing start or end time: " + fileLine);
                 }
                 String startTime = taskParts[3];
                 String endTime = taskParts[4];
