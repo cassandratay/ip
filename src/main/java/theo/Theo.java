@@ -1,6 +1,17 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+package theo;
 
+import theo.commands.Command;
+import theo.exceptions.TheoException;
+import theo.parser.Parser;
+import theo.storage.Storage;
+import theo.task.TaskList;
+import theo.ui.Ui;
+
+
+/**
+ * Entry point of the THEO Chatbot.
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Theo {
     private Storage storage;
     private Ui ui;

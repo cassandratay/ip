@@ -1,3 +1,11 @@
+package theo.commands;
+
+import theo.exceptions.TheoException;
+import theo.storage.Storage;
+import theo.task.Task;
+import theo.task.TaskList;
+import theo.ui.Ui;
+
 public class DeleteCommand extends Command {
     private int taskNumber;
 

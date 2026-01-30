@@ -1,3 +1,12 @@
+package theo.commands;
+
+import theo.exceptions.TheoException;
+import theo.storage.Storage;
+import theo.task.Event;
+import theo.task.Task;
+import theo.task.TaskList;
+import theo.ui.Ui;
+
 public class EventCommand extends Command {
     private String name;
     private String startTime;

@@ -1,3 +1,7 @@
+package theo.ui;
+
+import theo.exceptions.TheoException;
+
 import java.util.Scanner;
 
 public class Ui {
