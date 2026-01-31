@@ -7,7 +7,17 @@ import theo.task.Event;
 import theo.task.Task;
 import theo.task.ToDo;
 
+/**
+ * Parses user input.
+ */
 public class Parser {
+
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param input Full user input string.
+     * @return The command based on the user input.
+     */
     public static Command parseInput(String input) {
         String[] inputParts = input.split(" ", 2);
         String command = inputParts[0];
@@ -77,6 +87,16 @@ public class Parser {
         }
     }
 
+
+    /**
+     * Parses a single line from the storage file into a Task object.
+     *
+     * @param fileLine A single line from the storage file representing a task.
+     * @return A Task object corresponding to the data in the file line.
+     * @throws TheoException If the file line is in an invalid format,
+     *                       if a required time field is missing,
+     *                       or if the task type is unknown.
+     */
     public static Task parseFromFile(String fileLine) {
         String[] taskParts = fileLine.split(" \\| ");
         if (taskParts.length < 3) {

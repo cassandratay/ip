@@ -7,10 +7,19 @@ import theo.task.Task;
 import theo.task.TaskList;
 import theo.ui.Ui;
 
+/**
+ * Adds a Deadline task to the task list and saves it to the storage file.
+ */
 public class DeadlineCommand extends Command {
     private String name;
     private String deadline;
 
+    /**
+     * Constructs a DeadlineCommand with the given task name and deadline.
+     *
+     * @param name The name of the Deadline task.
+     * @param deadline The deadline of the Deadline task.
+     */
     public DeadlineCommand(String name, String deadline) {
         this.name = name;
         this.deadline = deadline;

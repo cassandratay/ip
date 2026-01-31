@@ -6,9 +6,17 @@ import theo.task.Task;
 import theo.task.TaskList;
 import theo.ui.Ui;
 
+/**
+ * Deletes a task identified using it's last displayed index from the task list.
+ */
 public class DeleteCommand extends Command {
     private int taskNumber;
 
+    /**
+     * Constructs a DeleteCommand for the given task number.
+     *
+     * @param taskNumber The index of the task to delete in the task list.
+     */
     public DeleteCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }

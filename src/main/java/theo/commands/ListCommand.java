@@ -5,6 +5,9 @@ import theo.storage.Storage;
 import theo.task.TaskList;
 import theo.ui.Ui;
 
+/**
+ * Lists all tasks in the task list to the user.
+ */
 public class ListCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
