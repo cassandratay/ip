@@ -82,6 +82,13 @@ public class Parser {
             int taskNumber = Integer.parseInt(inputParts[1]) - 1;
             return new DeleteCommand(taskNumber);
         }
+        case "find": {
+            if (inputParts.length == 1) {
+                throw new TheoException("Huh? A keyword of the task you are searching for has to be specified.");
+            }
+            String keyword = inputParts[1];
+            return new FindCommand(keyword);
+        }
         default:
             throw new TheoException("Huh? I don't quite know what you mean by that...");
         }
