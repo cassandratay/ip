@@ -7,7 +7,6 @@ import theo.storage.Storage;
 import theo.task.TaskList;
 import theo.ui.Ui;
 
-
 /**
  * Entry point of the THEO Chatbot.
  * Initializes the application and starts the interaction with the user.
@@ -59,4 +58,5 @@ public class Theo {
     public static void main(String[] args) {
         new Theo("data/tasks.txt").run();
     }
+
 }

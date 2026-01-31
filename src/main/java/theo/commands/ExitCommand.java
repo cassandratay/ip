@@ -9,6 +9,7 @@ import theo.ui.Ui;
  * Terminates the program.
  */
 public class ExitCommand extends Command {
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
         ui.showExit();
@@ -18,4 +19,5 @@ public class ExitCommand extends Command {
     public boolean isExit() {
         return true;
     }
+
 }

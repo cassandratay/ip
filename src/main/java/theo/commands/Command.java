@@ -9,6 +9,7 @@ import theo.storage.Storage;
  * Represents an executable command.
  */
 public abstract class Command {
+
     /**
      * Executes the command
      */
@@ -17,4 +18,5 @@ public abstract class Command {
     public boolean isExit() {
         return false;
     }
+
 }

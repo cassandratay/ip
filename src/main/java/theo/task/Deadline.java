@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a Deadline task, which has a specific deadline.
  */
 public class Deadline extends Task {
+
     private final LocalDateTime deadline;
 
     private static final DateTimeFormatter INPUT_FORMAT =
@@ -34,4 +35,5 @@ public class Deadline extends Task {
     public String getDeadline() {
         return " (by: " + deadline.format(OUTPUT_FORMAT) + ")";
     }
+
 }

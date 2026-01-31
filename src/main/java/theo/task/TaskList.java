@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Represents the task list. Contains information of all tasks.
  */
 public class TaskList {
+
     private ArrayList<Task> tasks;
 
     /**
@@ -71,4 +72,5 @@ public class TaskList {
         }
         return output.toString();
     }
+
 }

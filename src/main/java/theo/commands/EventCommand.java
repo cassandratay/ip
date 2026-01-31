@@ -11,6 +11,7 @@ import theo.ui.Ui;
  * Adds an Event task to the task list and saves it to the storage file.
  */
 public class EventCommand extends Command {
+
     private String name;
     private String startTime;
     private String endTime;
@@ -37,4 +38,5 @@ public class EventCommand extends Command {
         ui.showMessage("Got it. I've added this task:\n" + task);
         ui.showMessage("Now you have " + tasks.numOfTasks() + " task(s) in the list.");
     }
+
 }

@@ -10,6 +10,7 @@ import theo.ui.Ui;
  * Marks task identified using it's last displayed index from the task list as done.
  */
 public class MarkCommand extends Command {
+
     private int taskNumber;
 
     /**
@@ -30,4 +31,5 @@ public class MarkCommand extends Command {
 
         ui.showMessage("Nice! I've marked this task as done:\n" + task);
     }
+
 }

@@ -38,4 +38,5 @@ public class Event extends Task {
     public String getDeadline() {
         return " (from: " + start.format(OUTPUT_FORMAT) + " to: " + end.format(OUTPUT_FORMAT) + ")";
     }
+
 }

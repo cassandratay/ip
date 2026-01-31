@@ -10,6 +10,7 @@ import theo.ui.Ui;
  * Deletes a task identified using it's last displayed index from the task list.
  */
 public class DeleteCommand extends Command {
+
     private int taskNumber;
 
     /**
@@ -31,4 +32,5 @@ public class DeleteCommand extends Command {
         ui.showMessage("Noted. I've removed this task:\n" + task);
         ui.showMessage("Now you have " + tasks.numOfTasks() + " task(s) in the list.");
     }
+
 }

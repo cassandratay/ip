@@ -10,6 +10,7 @@ import theo.ui.Ui;
  * Marks task identified using it's last displayed index from the task list as not done.
  */
 public class UnmarkCommand extends Command {
+
     private int taskNumber;
 
     /**
@@ -30,4 +31,5 @@ public class UnmarkCommand extends Command {
 
         ui.showMessage("Boo! I've marked this task as not done:\n" + task);
     }
+
 }

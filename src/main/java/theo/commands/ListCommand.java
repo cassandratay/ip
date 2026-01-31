@@ -9,6 +9,7 @@ import theo.ui.Ui;
  * Lists all tasks in the task list to the user.
  */
 public class ListCommand extends Command {
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
         ui.showMessage("Here are the tasks in your list:");
@@ -17,4 +18,5 @@ public class ListCommand extends Command {
             ui.showMessage(i + ". " + tasks.getTask(i - 1));
         }
     }
+
 }

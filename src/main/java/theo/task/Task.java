@@ -4,6 +4,7 @@ package theo.task;
  * Represents a task in the task list.
  */
 public abstract class Task {
+
     private final String name;
     private boolean done;
 
@@ -54,4 +55,5 @@ public abstract class Task {
     public String formatString() {
         return getType() + " | " + (done ? "1" : "0") + " | " + this.name + getDeadline();
     }
+
 }

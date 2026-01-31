@@ -11,6 +11,7 @@ import theo.ui.Ui;
  * Adds a ToDo task to the task list and saves it to the storage file.
  */
 public class ToDoCommand extends Command {
+
     private String name;
 
     /**
@@ -31,4 +32,5 @@ public class ToDoCommand extends Command {
         ui.showMessage("Got it. I've added this task:\n" + task);
         ui.showMessage("Now you have " + tasks.numOfTasks() + " task(s) in the list.");
     }
+
 }
