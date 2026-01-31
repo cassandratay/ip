@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
+
     private final LocalDateTime start;
     private final LocalDateTime end;
 
@@ -27,4 +28,5 @@ public class Event extends Task {
     public String getDeadline() {
         return " (from: " + start.format(OUTPUT_FORMAT) + " to: " + end.format(OUTPUT_FORMAT) + ")";
     }
+
 }

@@ -1,6 +1,7 @@
 package theo.task;
 
 public abstract class Task {
+
     private final String name;
     private boolean done;
 
@@ -33,4 +34,5 @@ public abstract class Task {
     public String formatString() {
         return getType() + " | " + (done ? "1" : "0") + " | " + this.name + getDeadline();
     }
+
 }

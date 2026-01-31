@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
+
     private final LocalDateTime deadline;
 
     private static final DateTimeFormatter INPUT_FORMAT =
@@ -25,4 +26,5 @@ public class Deadline extends Task {
     public String getDeadline() {
         return " (by: " + deadline.format(OUTPUT_FORMAT) + ")";
     }
+
 }

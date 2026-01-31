@@ -1,6 +1,7 @@
 package theo.task;
 
 public class ToDo extends Task {
+
     public ToDo(String name) {
         super(name);
     }
@@ -14,4 +15,5 @@ public class ToDo extends Task {
     public String getDeadline() {
         return "";
     }
+
 }

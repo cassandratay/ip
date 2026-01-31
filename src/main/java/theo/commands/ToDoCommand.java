@@ -8,6 +8,7 @@ import theo.task.ToDo;
 import theo.ui.Ui;
 
 public class ToDoCommand extends Command {
+
     private String name;
 
     public ToDoCommand(String name) {
@@ -23,4 +24,5 @@ public class ToDoCommand extends Command {
         ui.showMessage("Got it. I've added this task:\n" + task);
         ui.showMessage("Now you have " + tasks.numOfTasks() + " task(s) in the list.");
     }
+
 }

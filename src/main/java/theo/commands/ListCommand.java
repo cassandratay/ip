@@ -6,6 +6,7 @@ import theo.task.TaskList;
 import theo.ui.Ui;
 
 public class ListCommand extends Command {
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
         ui.showMessage("Here are the tasks in your list:");
@@ -14,4 +15,5 @@ public class ListCommand extends Command {
             ui.showMessage(i + ". " + tasks.getTask(i - 1));
         }
     }
+
 }

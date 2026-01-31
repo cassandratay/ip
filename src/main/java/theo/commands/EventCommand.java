@@ -8,6 +8,7 @@ import theo.task.TaskList;
 import theo.ui.Ui;
 
 public class EventCommand extends Command {
+
     private String name;
     private String startTime;
     private String endTime;
@@ -27,4 +28,5 @@ public class EventCommand extends Command {
         ui.showMessage("Got it. I've added this task:\n" + task);
         ui.showMessage("Now you have " + tasks.numOfTasks() + " task(s) in the list.");
     }
+
 }

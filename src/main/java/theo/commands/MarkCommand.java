@@ -7,6 +7,7 @@ import theo.task.TaskList;
 import theo.ui.Ui;
 
 public class MarkCommand extends Command {
+
     private int taskNumber;
 
     public MarkCommand(int taskNumber) {
@@ -22,4 +23,5 @@ public class MarkCommand extends Command {
 
         ui.showMessage("Nice! I've marked this task as done:\n" + task);
     }
+
 }

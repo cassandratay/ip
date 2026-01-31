@@ -3,6 +3,7 @@ package theo.task;
 import java.util.ArrayList;
 
 public class TaskList {
+
     private ArrayList<Task> tasks;
 
     public TaskList() {
@@ -37,4 +38,5 @@ public class TaskList {
         }
         return output.toString();
     }
+
 }

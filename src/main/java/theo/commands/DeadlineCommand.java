@@ -8,13 +8,13 @@ import theo.task.TaskList;
 import theo.ui.Ui;
 
 public class DeadlineCommand extends Command {
+
     private String name;
     private String deadline;
 
     public DeadlineCommand(String name, String deadline) {
         this.name = name;
         this.deadline = deadline;
-
     }
 
     @Override
@@ -26,4 +26,5 @@ public class DeadlineCommand extends Command {
         ui.showMessage("Got it. I've added this task:\n" + task);
         ui.showMessage("Now you have " + tasks.numOfTasks() + " task(s) in the list.");
     }
+
 }
