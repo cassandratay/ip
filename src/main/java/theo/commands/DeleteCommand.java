@@ -23,14 +23,14 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
         Task task = tasks.getTask(taskNumber);
         tasks.deleteTask(taskNumber);
 
         storage.save(tasks);
 
-        ui.showMessage("Noted. I've removed this task:\n" + task);
-        ui.showMessage("Now you have " + tasks.numOfTasks() + " task(s) in the list.");
+        return "Noted. I've removed this task:\n" + task +
+                "\nNow you have " + tasks.numOfTasks() + " task(s) in the list.";
     }
 
 }

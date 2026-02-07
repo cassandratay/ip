@@ -16,24 +16,24 @@ public class Theo {
     private Storage storage;
     private Ui ui;
     private TaskList tasks;
+    private static final String DEFAULT_FILE_PATH = "data/tasks.txt";
 
     /**
      * Constructs the Theo chatbot with a given file path for task storage.
-     *
-     * @param filePath The path to the file where tasks are saved and loaded from.
      */
-    public Theo(String filePath) {
+    public Theo() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(DEFAULT_FILE_PATH);
         try {
             tasks = new TaskList(storage.load());
         } catch (TheoException e) {
-            // ui.showLoadingError();
             tasks = new TaskList();
         }
     }
 
-    /** Runs the program until termination. */
+    /**
+     * Runs the program until termination.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -56,7 +56,20 @@ public class Theo {
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
-        new Theo("data/tasks.txt").run();
+        new Theo().run();
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parseInput(input);
+            return c.execute(tasks, ui, storage);
+        } catch (TheoException e) {
+            ui.showError(e);
+            return e.getMessage(); // return an error message to the GUI
+        }
     }
 
 }

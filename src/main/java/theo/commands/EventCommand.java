@@ -30,13 +30,13 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
         Task task = new Event(name, startTime, endTime);
         tasks.addTask(task);
         storage.save(tasks);
 
-        ui.showMessage("Got it. I've added this task:\n" + task);
-        ui.showMessage("Now you have " + tasks.numOfTasks() + " task(s) in the list.");
+        return "Got it. I've added this task:\n" + task +
+                "\nNow you have " + tasks.numOfTasks() + " task(s) in the list.";
     }
 
 }

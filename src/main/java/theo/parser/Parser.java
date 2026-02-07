@@ -1,6 +1,15 @@
 package theo.parser;
 
-import theo.commands.*;
+import theo.commands.Command;
+import theo.commands.DeadlineCommand;
+import theo.commands.DeleteCommand;
+import theo.commands.EventCommand;
+import theo.commands.ExitCommand;
+import theo.commands.FindCommand;
+import theo.commands.ListCommand;
+import theo.commands.MarkCommand;
+import theo.commands.ToDoCommand;
+import theo.commands.UnmarkCommand;
 import theo.exceptions.TheoException;
 import theo.task.Deadline;
 import theo.task.Event;
@@ -55,7 +64,7 @@ public class Parser {
             String description = inputParts[1];
             String[] descriptionParts = description.split(" /by ", 2);
             if (descriptionParts.length == 1) {    // if only "deadline [taskname]"
-                throw new TheoException("Huh? The deadline has to be specified.");
+                throw new TheoException("Huh? The deadline has to be specified in d/M/yyyy HHmm format.");
             }
             String name = descriptionParts[0];
             String deadline = descriptionParts[1];
