@@ -23,13 +23,13 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
         Task task = tasks.getTask(taskNumber);
         task.markDone();
 
         storage.save(tasks);
 
-        ui.showMessage("Nice! I've marked this task as done:\n" + task);
+        return "Nice! I've marked this task as done:\n" + task;
     }
 
 }

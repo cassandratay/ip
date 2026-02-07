@@ -17,22 +17,25 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
         int index = 1;
+        StringBuilder result = new StringBuilder();
 
         for (Task task : tasks.getTasks()) {
             if (task.toString().contains(keyword)) {
                 if (index == 1) {
-                    ui.showMessage("Great! Here are the matching tasks in your list:");
+                    result.append("Great! Here are the matching tasks in your list:");
                 }
-                ui.showMessage(index + ". " + task.toString());
                 index++;
+                result.append(index).append(". ").append(task.toString());
             }
         }
 
         if (index == 1) {
-            ui.showMessage("Aw, there are no matching tasks in your list.\nYou may try another keyword :)");
+            result.append("Aw, there are no matching tasks in your list.\nYou may try another keyword :)");
         }
+
+        return result.toString();
     }
 
 }

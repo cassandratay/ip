@@ -23,13 +23,13 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
         Task task = tasks.getTask(taskNumber);
         task.markUndone();
 
         storage.save(tasks);
 
-        ui.showMessage("Boo! I've marked this task as not done:\n" + task);
+        return "Boo! I've marked this task as not done:\n" + task;
     }
 
 }

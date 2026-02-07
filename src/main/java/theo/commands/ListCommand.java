@@ -11,12 +11,19 @@ import theo.ui.Ui;
 public class ListCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
-        ui.showMessage("Here are the tasks in your list:");
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
+        if (tasks.getTasks().isEmpty()) {
+            return "You have no tasks! ;)";
+        }
+
+        StringBuilder result = new StringBuilder();
+        result.append("Here are the tasks in your list:");
 
         for (int i = 1; i <= tasks.numOfTasks(); i++) {
-            ui.showMessage(i + ". " + tasks.getTask(i - 1));
-        }
+            result.append("\n").append(i).append(". ").append(tasks.getTask(i - 1));
+    }
+
+        return result.toString();
     }
 
 }

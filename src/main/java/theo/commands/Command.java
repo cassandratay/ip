@@ -13,7 +13,7 @@ public abstract class Command {
     /**
      * Executes the command
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws TheoException;
 
     public boolean isExit() {
         return false;

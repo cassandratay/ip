@@ -11,8 +11,8 @@ import theo.ui.Ui;
 public class ExitCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
-        ui.showExit();
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
+        return "Bye. Hope to see you again soon!";
     }
 
     @Override
