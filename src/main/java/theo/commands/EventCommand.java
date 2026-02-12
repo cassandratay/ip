@@ -24,6 +24,9 @@ public class EventCommand extends Command {
      * @param endTime The end time of the Event task.
      */
     public EventCommand(String name, String startTime, String endTime) {
+        assert name != null : "Event name should not be null";
+        assert startTime != null : "Event start time should not be null";
+        assert endTime != null : "Event end time should not be null";
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
