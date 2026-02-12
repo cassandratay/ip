@@ -40,9 +40,9 @@ public class Theo {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                Command c = Parser.parseInput(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
+                Command command = Parser.parseInput(fullCommand);
+                command.execute(tasks, ui, storage);
+                isExit = command.isExit();
             } catch (TheoException e) {
                 ui.showError(e);
             }

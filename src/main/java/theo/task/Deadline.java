@@ -16,13 +16,14 @@ public class Deadline extends Task {
             DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
 
     /**
-     * Constructs an Deadline task with the given name and deadline.
+     * Constructs a Deadline task with the given name and deadline.
      *
      * @param name The name of the Deadline task.
      * @param deadline The deadline of the Deadline task.
      */
     public Deadline(String name, String deadline) {
         super(name);
+        assert deadline != null : "Deadline should not be null";
         this.deadline = LocalDateTime.parse(deadline, INPUT_FORMAT);
     }
 
