@@ -61,13 +61,13 @@ public class Storage {
                 return tasks;
             }
 
-            Scanner sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
                 Task task = Parser.parseFromFile(line);
                 tasks.add(task);
             }
-        } catch (IOException e) {
+        } catch (IOException exception) {
             System.out.println("Oh no! Could not save to file");
         }
         return tasks;

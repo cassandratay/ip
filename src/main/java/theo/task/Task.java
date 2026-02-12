@@ -6,7 +6,7 @@ package theo.task;
 public abstract class Task {
 
     private final String name;
-    private boolean done;
+    private boolean isDone;
 
     /**
      * Constructs a Task with the given name.
@@ -16,21 +16,21 @@ public abstract class Task {
      */
     public Task(String name) {
         this.name = name;
-        this.done = false;
+        this.isDone = false;
     }
 
     /**
      * Marks the task as done.
      */
     public void markDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     /**
      * Marks the task as not done.
      */
     public void markUndone() {
-        this.done = false;
+        this.isDone = false;
     }
 
     public abstract String getType();
@@ -43,7 +43,7 @@ public abstract class Task {
             return "Huh?";
         }
 
-        return "[" + getType() + "][" + (done ? "X] " : " ] ") + this.name + getDeadline();
+        return "[" + getType() + "][" + (isDone ? "X] " : " ] ") + this.name + getDeadline();
     }
 
     /**
@@ -53,7 +53,7 @@ public abstract class Task {
      * @return A string containing the task information to be saved to the storage file.
      */
     public String formatString() {
-        return getType() + " | " + (done ? "1" : "0") + " | " + this.name + getDeadline();
+        return getType() + " | " + (isDone ? "1" : "0") + " | " + this.name + getDeadline();
     }
 
 }
