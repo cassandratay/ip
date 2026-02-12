@@ -29,6 +29,7 @@ public class Parser {
      */
     public static Command parseInput(String input) {
         String[] inputParts = input.split(" ", 2);
+
         String command = inputParts[0];
 
         switch (command) {
@@ -134,9 +135,7 @@ public class Parser {
      */
     public static Task parseFromFile(String fileLine) {
         String[] taskParts = fileLine.split(" \\| ");
-        if (taskParts.length < 3) {
-            throw new TheoException("Invalid task format in file: " + fileLine);
-        }
+        assert taskParts.length >= 3 : "File line must have type, status, and name";
 
         String type = taskParts[0];
         boolean isDone = taskParts[1].equals("1");
