@@ -13,26 +13,31 @@ public class FindCommand extends Command {
     private final String keyword;
 
     public FindCommand(String keyword) {
+        assert keyword != null : "Keyword should not be null";
         this.keyword = keyword;
     }
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws TheoException {
-        int index = 1;
+        int matchCount = 0;
         StringBuilder result = new StringBuilder();
 
         for (Task task : tasks.getTasks()) {
             if (task.toString().contains(keyword)) {
-                if (index == 1) {
-                    result.append("Great! Here are the matching tasks in your list:");
+                if (matchCount == 0) {
+                    result.append("Great! Here are the matching tasks in your list:\n");
                 }
-                index++;
-                result.append(index).append(". ").append(task.toString());
+                matchCount++;
+                result.append(matchCount)
+                        .append(". ")
+                        .append(task)
+                        .append("\n");
             }
         }
 
-        if (index == 1) {
-            result.append("Aw, there are no matching tasks in your list.\nYou may try another keyword :)");
+        if (matchCount == 0) {
+            result.append("Aw, there are no matching tasks in your list.\n")
+                    .append("You may try another keyword :)");
         }
 
         return result.toString();

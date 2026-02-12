@@ -22,6 +22,8 @@ public class DeadlineCommand extends Command {
      * @param deadline The deadline of the Deadline task.
      */
     public DeadlineCommand(String name, String deadline) {
+        assert name != null : "Deadline name should not be null";
+        assert deadline != null : "Deadline time should not be null";
         this.name = name;
         this.deadline = deadline;
     }

@@ -20,6 +20,7 @@ public class ToDoCommand extends Command {
      * @param name The name of the ToDo task.
      */
     public ToDoCommand(String name) {
+        assert name != null : "Todo name should not be null";
         this.name = name;
     }
 
