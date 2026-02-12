@@ -1,5 +1,6 @@
 package theo.task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -41,6 +42,13 @@ public class Event extends Task {
     @Override
     public String getDeadline() {
         return " (from: " + startTime.format(OUTPUT_FORMAT) + " to: " + endTime.format(OUTPUT_FORMAT) + ")";
+    }
+
+    @Override
+    public boolean isOnDate(LocalDate date) {
+        LocalDate startDate = startTime.toLocalDate();
+        LocalDate endDate = endTime.toLocalDate();
+        return !date.isBefore(startDate) && !date.isAfter(endDate);
     }
 
 }

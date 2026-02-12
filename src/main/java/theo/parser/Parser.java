@@ -10,6 +10,7 @@ import theo.commands.ListCommand;
 import theo.commands.MarkCommand;
 import theo.commands.ToDoCommand;
 import theo.commands.UnmarkCommand;
+import theo.commands.ViewCommand;
 import theo.exceptions.TheoException;
 import theo.task.Deadline;
 import theo.task.Event;
@@ -72,6 +73,9 @@ public class Parser {
         }
         case "find": {
             return new FindCommand(parseKeyword(inputParts));
+        }
+        case "view": {
+            return new ViewCommand(parseDescription(inputParts));
         }
         default:
             throw new TheoException("Huh? I don't quite know what you mean by that...");

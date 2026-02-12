@@ -1,5 +1,7 @@
 package theo.task;
 
+import java.time.LocalDate;
+
 /**
  * Represents a task in the task list.
  */
@@ -55,6 +57,10 @@ public abstract class Task {
      */
     public String formatString() {
         return getType() + " | " + (isDone ? "1" : "0") + " | " + this.name + getDeadline();
+    }
+
+    public boolean isOnDate(LocalDate date) {
+        return false;
     }
 
 }
