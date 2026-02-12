@@ -38,31 +38,17 @@ public class Parser {
         case "list":
             return new ListCommand();
         case "mark": {
-            if (inputParts.length == 1) { // if only "mark"
-                throw new TheoException("Huh? The index of the task has to be specified.");
-            }
-            int taskNumber = Integer.parseInt(inputParts[1]) - 1;
-            return new MarkCommand(taskNumber);
+            return new MarkCommand(parseTaskNumber(inputParts));
         }
         case "unmark": {
-            if (inputParts.length == 1) { // if only "unmark"
-                throw new TheoException("Huh? The index of the task has to be specified.");
-            }
-            int taskNumber = Integer.parseInt(inputParts[1]) - 1;
-            return new UnmarkCommand(taskNumber);
+            return new UnmarkCommand(parseTaskNumber(inputParts));
         }
         case "todo": {
-            if (inputParts.length == 1) { // if only "todo"
-                throw new TheoException("Huh? The description cannot be empty.");
-            }
-            String taskName = inputParts[1];
+            String taskName = parseDescription(inputParts);
             return new ToDoCommand(taskName);
         }
         case "deadline": {
-            if (inputParts.length == 1) {   // if only "deadline"
-                throw new TheoException("Huh? The description cannot be empty.");   // no name
-            }
-            String description = inputParts[1];
+            String description = parseDescription(inputParts);
             String[] descriptionParts = description.split(" /by ", 2);
             if (descriptionParts.length == 1) {    // if only "deadline [taskname]"
                 throw new TheoException("Huh? The deadline has to be specified in d/M/yyyy HHmm format.");
@@ -72,12 +58,8 @@ public class Parser {
             return new DeadlineCommand(name, deadline);
         }
         case "event": {
-            if (inputParts.length == 1) {   // if only "event"
-                throw new TheoException("Huh? The description cannot be empty.");
-            }
-            String description = inputParts[1];
+            String description = parseDescription(inputParts);
             String[] descriptionParts = description.split(" /from ", 2);
-
             String name = descriptionParts[0];
             String timing = descriptionParts[1];
             String[] timingParts = timing.split(" /to ", 2);
@@ -86,24 +68,61 @@ public class Parser {
             return new EventCommand(name, startTime, endTime);
         }
         case "delete": {
-            if (inputParts.length == 1) {
-                throw new TheoException("Huh? The task to delete has to be specified.");
-            }
-            int taskNumber = Integer.parseInt(inputParts[1]) - 1;
-            return new DeleteCommand(taskNumber);
+            return new DeleteCommand(parseTaskNumber(inputParts));
         }
         case "find": {
-            if (inputParts.length == 1) {
-                throw new TheoException("Huh? A keyword of the task you are searching for has to be specified.");
-            }
-            String keyword = inputParts[1];
-            return new FindCommand(keyword);
+            return new FindCommand(parseKeyword(inputParts));
         }
         default:
             throw new TheoException("Huh? I don't quite know what you mean by that...");
         }
     }
 
+    /**
+     * Parses the task number from user input for commands like "mark", "unmark", or "delete".
+     *
+     * @param inputParts The user input split into parts (command and arguments).
+     * @return The zero-based task index corresponding to the user's input.
+     * @throws TheoException If no task number is provided or if it is not a valid integer.
+     */
+    private static int parseTaskNumber(String[] inputParts) {
+        if (inputParts.length < 2) {
+            throw new TheoException("Task number must be specified.");
+        }
+        try {
+            return Integer.parseInt(inputParts[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new TheoException("Task number must be a valid integer.");
+        }
+    }
+
+    /**
+     * Parses the search keyword from user input for the "find" command.
+     *
+     * @param inputParts The user input split into parts (command and arguments).
+     * @return The keyword to search for.
+     * @throws TheoException If no keyword is provided in the input.
+     */
+    private static String parseKeyword(String[] inputParts) {
+        if (inputParts.length < 2) {
+            throw new TheoException("Huh? A keyword of the task you are searching for has to be specified.");
+        }
+        return inputParts[1];
+    }
+
+    /**
+     * Parses the description from user input for commands like "todo", "deadline", or "event".
+     *
+     * @param inputParts The user input split into parts (command and arguments).
+     * @return The description text.
+     * @throws TheoException If the description is missing or blank.
+     */
+    private static String parseDescription(String[] inputParts) {
+        if (inputParts.length < 2 || inputParts[1].isBlank()) {
+            throw new TheoException("Huh? The description cannot be empty.");
+        }
+        return inputParts[1];
+    }
 
     /**
      * Parses a single line from the storage file into a Task object.
@@ -151,4 +170,5 @@ public class Parser {
         }
         return task;
     }
+
 }

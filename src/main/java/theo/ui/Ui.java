@@ -8,7 +8,7 @@ import java.util.Scanner;
  * UI of the application.
  */
 public class Ui {
-    private final Scanner sc = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     /**
      * Displays welcome message when the chatbot starts.
@@ -48,7 +48,7 @@ public class Ui {
      * @return The input string entered by the user.
      */
     public String readCommand() {
-        return sc.nextLine();
+        return scanner.nextLine();
     }
 }
 
