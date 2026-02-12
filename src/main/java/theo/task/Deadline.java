@@ -1,5 +1,6 @@
 package theo.task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -35,6 +36,12 @@ public class Deadline extends Task {
     @Override
     public String getDeadline() {
         return " (by: " + deadline.format(OUTPUT_FORMAT) + ")";
+    }
+
+    @Override
+    public boolean isOnDate(LocalDate date) {
+        LocalDate deadlineInLocalDate = deadline.toLocalDate();
+        return deadlineInLocalDate.equals(date) || deadlineInLocalDate.isAfter(date);
     }
 
 }
