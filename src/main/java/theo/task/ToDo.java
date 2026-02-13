@@ -20,8 +20,8 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String getDeadline() {
-        return "";
+    public String formatForFile() {
+        return getType() + " | " + (isDone() ? "1" : "0") + " | " + getName();
     }
 
 }

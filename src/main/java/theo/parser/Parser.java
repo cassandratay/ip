@@ -1,5 +1,8 @@
 package theo.parser;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import theo.commands.Command;
 import theo.commands.DeadlineCommand;
 import theo.commands.DeleteCommand;
@@ -21,6 +24,9 @@ import theo.task.ToDo;
  * Parses user input.
  */
 public class Parser {
+
+    private static final DateTimeFormatter INPUT_FORMAT =
+            DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
 
     /**
      * Parses user input into command for execution.
@@ -45,27 +51,27 @@ public class Parser {
             return new UnmarkCommand(parseTaskNumber(inputParts));
         }
         case "todo": {
-            String taskName = parseDescription(inputParts);
+            String taskName = parseDescription(inputParts, command);
             return new ToDoCommand(taskName);
         }
         case "deadline": {
-            String description = parseDescription(inputParts);
+            String description = parseDescription(inputParts, command);
             String[] descriptionParts = description.split(" /by ", 2);
-            if (descriptionParts.length == 1) {    // if only "deadline [taskname]"
-                throw new TheoException("Huh? The deadline has to be specified in d/M/yyyy HHmm format.");
+            if (descriptionParts.length == 1) {
+                throw new TheoException("Deadline must include '/by' followed by date/time.");
             }
             String name = descriptionParts[0];
-            String deadline = descriptionParts[1];
+            LocalDateTime deadline = parseDateTime(descriptionParts[1]);
             return new DeadlineCommand(name, deadline);
         }
         case "event": {
-            String description = parseDescription(inputParts);
+            String description = parseDescription(inputParts, command);
             String[] descriptionParts = description.split(" /from ", 2);
             String name = descriptionParts[0];
             String timing = descriptionParts[1];
             String[] timingParts = timing.split(" /to ", 2);
-            String startTime = timingParts[0];
-            String endTime = timingParts[1];
+            LocalDateTime startTime = parseDateTime(timingParts[0]);
+            LocalDateTime endTime = parseDateTime(timingParts[1]);
             return new EventCommand(name, startTime, endTime);
         }
         case "delete": {
@@ -75,7 +81,7 @@ public class Parser {
             return new FindCommand(parseKeyword(inputParts));
         }
         case "view": {
-            return new ViewCommand(parseDescription(inputParts));
+            return new ViewCommand(parseDescription(inputParts, command));
         }
         default:
             throw new TheoException("Huh? I don't quite know what you mean by that...");
@@ -121,9 +127,9 @@ public class Parser {
      * @return The description text.
      * @throws TheoException If the description is missing or blank.
      */
-    private static String parseDescription(String[] inputParts) {
+    private static String parseDescription(String[] inputParts, String command) {
         if (inputParts.length < 2 || inputParts[1].isBlank()) {
-            throw new TheoException("Huh? The description cannot be empty.");
+            throw new TheoException("Huh? The description for '" + command + "' cannot be empty.");
         }
         return inputParts[1];
     }
@@ -156,23 +162,44 @@ public class Parser {
             if (taskParts.length < 4) {
                 throw new TheoException("theo.task.Deadline missing time: " + fileLine);
             }
-            String deadline = taskParts[3];
-            task = new Deadline(name, deadline);
+            LocalDateTime deadlineTime = parseDateTime(taskParts[3]);
+            task = new Deadline(name, deadlineTime);
             break;
 
         case "E":
             if (taskParts.length < 5) {
                 throw new TheoException("theo.task.Event missing start or end time: " + fileLine);
             }
-            String startTime = taskParts[3];
-            String endTime = taskParts[4];
+            LocalDateTime startTime = parseDateTime(taskParts[3]);
+            LocalDateTime endTime = parseDateTime(taskParts[4]);
             task = new Event(name, startTime, endTime);
             break;
 
         default:
             throw new TheoException("Unknown task type in file: " + type);
         }
+
+        if (isDone) {
+            task.markDone();
+        }
+
         return task;
+    }
+
+    /**
+     * Parses the dateTime String from user input for commands like "deadline", or "event".
+     *
+     * @param dateTime The dateTime string to be parsed.
+     * @return The LocalDateTime object corresponding to the parsed dateTime string.
+     * @throws TheoException If the dateTime string is in an invalid format.
+     */
+    private static LocalDateTime parseDateTime(String dateTime) {
+        try {
+            return LocalDateTime.parse(dateTime, INPUT_FORMAT);
+        } catch (java.time.format.DateTimeParseException e) {
+            throw new TheoException("Invalid date/time format: " + dateTime +
+                    ". Use d/M/yyyy HHmm, e.g., 13/2/2026 1530.");
+        }
     }
 
 }

@@ -74,7 +74,7 @@ public class TaskList {
     public String toString() {
         StringBuilder output = new StringBuilder();
         for (Task task : tasks) {
-            output.append(task.formatString()).append("\n");
+            output.append(task.formatForFile()).append("\n");
         }
         return output.toString();
     }
