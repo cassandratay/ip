@@ -58,7 +58,7 @@ public class Parser {
             String description = parseDescription(inputParts, command);
             String[] descriptionParts = description.split(" /by ", 2);
             if (descriptionParts.length == 1) {
-                throw new TheoException("Deadline must include '/by' followed by date/time.");
+                throw new TheoException("Deadline must include '/by' followed by date and time.");
             }
             String name = descriptionParts[0];
             LocalDateTime deadline = parseDateTime(descriptionParts[1]);
@@ -67,11 +67,20 @@ public class Parser {
         case "event": {
             String description = parseDescription(inputParts, command);
             String[] descriptionParts = description.split(" /from ", 2);
+            if (descriptionParts.length == 1) {
+                throw new TheoException("Event must include '/from' and '/to' followed by a date and time for each.");
+            }
             String name = descriptionParts[0];
             String timing = descriptionParts[1];
             String[] timingParts = timing.split(" /to ", 2);
+            if (timingParts.length == 1) {
+                throw new TheoException("Event must include BOTH '/from' and '/to' followed by a date and time for each.");
+            }
             LocalDateTime startTime = parseDateTime(timingParts[0]);
             LocalDateTime endTime = parseDateTime(timingParts[1]);
+            if (startTime.isAfter(endTime) || startTime.equals(endTime)) {
+                throw new TheoException("Event start time must be before end time.");
+            }
             return new EventCommand(name, startTime, endTime);
         }
         case "delete": {
@@ -84,7 +93,7 @@ public class Parser {
             return new ViewCommand(parseDescription(inputParts, command));
         }
         default:
-            throw new TheoException("Huh? I don't quite know what you mean by that...");
+            throw new TheoException("I don't understand that command.");
         }
     }
 
@@ -115,7 +124,7 @@ public class Parser {
      */
     private static String parseKeyword(String[] inputParts) {
         if (inputParts.length < 2) {
-            throw new TheoException("Huh? A keyword of the task you are searching for has to be specified.");
+            throw new TheoException("A keyword of the task you are searching for has to be specified.");
         }
         return inputParts[1];
     }
@@ -129,7 +138,7 @@ public class Parser {
      */
     private static String parseDescription(String[] inputParts, String command) {
         if (inputParts.length < 2 || inputParts[1].isBlank()) {
-            throw new TheoException("Huh? The description for '" + command + "' cannot be empty.");
+            throw new TheoException("The description for '" + command + "' cannot be empty.");
         }
         return inputParts[1];
     }

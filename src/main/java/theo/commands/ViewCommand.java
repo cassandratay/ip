@@ -2,6 +2,7 @@ package theo.commands;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import theo.exceptions.TheoException;
 import theo.storage.Storage;
@@ -15,7 +16,11 @@ public class ViewCommand extends Command {
 
     public ViewCommand(String dateString) {
         assert dateString != null : "Date should not be null";
-        this.date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("d/M/yyyy"));
+        try {
+            this.date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("d/M/yyyy"));
+        } catch (DateTimeParseException e) {
+            throw new TheoException("Invalid date format. Use d/M/yyyy, e.g., 13/2/2026.");
+        }
     }
 
     @Override
