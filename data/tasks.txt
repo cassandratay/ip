@@ -1,3 +1,4 @@
-D | 0 | return book (by: Dec 02 2019, 6:00 pm)
-D | 0 | eat (by: Dec 02 2019, 6:00 pm)
-D | 0 | return book (by: Dec 15 2019, 6:00 pm)
+T | 0 | eat
+T | 0 | run
+D | 0 | eat nonstop (by: Nov 12 1997, 2:00 am)
+E | 0 | poop (from: Jan 01 2000, 7:00 pm to: Mar 01 2000, 6:00 pm)
