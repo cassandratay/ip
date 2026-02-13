@@ -1,5 +1,7 @@
 package theo.commands;
 
+import java.time.LocalDateTime;
+
 import theo.exceptions.TheoException;
 import theo.storage.Storage;
 import theo.task.Deadline;
@@ -13,7 +15,7 @@ import theo.ui.Ui;
 public class DeadlineCommand extends Command {
 
     private String name;
-    private String deadline;
+    private LocalDateTime deadline;
 
     /**
      * Constructs a DeadlineCommand with the given task name and deadline.
@@ -21,7 +23,7 @@ public class DeadlineCommand extends Command {
      * @param name The name of the Deadline task.
      * @param deadline The deadline of the Deadline task.
      */
-    public DeadlineCommand(String name, String deadline) {
+    public DeadlineCommand(String name, LocalDateTime deadline) {
         assert name != null : "Deadline name should not be null";
         assert deadline != null : "Deadline time should not be null";
         this.name = name;

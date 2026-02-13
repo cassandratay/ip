@@ -1,5 +1,6 @@
 package theo.storage;
 
+import theo.exceptions.TheoException;
 import theo.parser.Parser;
 import theo.task.Task;
 import theo.task.TaskList;
@@ -41,8 +42,11 @@ public class Storage {
             }
 
             FileWriter writer = new FileWriter(filePath);
-            writer.write(tasks.toString());
+            for (Task task : tasks.getTasks()) {
+                writer.write(task.formatForFile() + System.lineSeparator());
+            }
             writer.close();
+
         } catch (IOException e) {
             System.out.println("Oh no! Could not save to file");
         }
@@ -56,7 +60,7 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
             if (!file.exists()) {
-                file.getParentFile().mkdirs();
+                if (file.getParentFile() != null) file.getParentFile().mkdirs();
                 file.createNewFile();
                 return tasks;
             }
@@ -64,12 +68,17 @@ public class Storage {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                Task task = Parser.parseFromFile(line);
-                tasks.add(task);
+                try {
+                    Task task = Parser.parseFromFile(line);
+                    tasks.add(task);
+                } catch (TheoException e) {
+                    System.out.println("Skipping malformed task line: " + line);
+                }
             }
         } catch (IOException exception) {
-            System.out.println("Oh no! Could not save to file");
+            System.out.println("Oh no! Could not read from file: " + exception.getMessage());
         }
         return tasks;
     }
+
 }
