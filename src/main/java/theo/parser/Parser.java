@@ -35,6 +35,7 @@ public class Parser {
      * @return The command based on the user input.
      */
     public static Command parseInput(String input) {
+        input = input.trim();
         String[] inputParts = input.split(" ", 2);
 
         String command = inputParts[0];
